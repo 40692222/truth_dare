@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Truth and Dare</title>
+</head>
+<body>
+    {% if question %}
+        <h1>Your Challenge</h1>
+        <p>{{ question }}</p>
+        <a href="/">Go Back</a>
+    {% else %}
+        <h1>Truth or Dare</h1>
+        <form method="POST">
+            <label for="type">Choose Type:</label>
+            <select id="type" name="type">
+                <option value="truth">Truth</option>
+                <option value="dare">Dare</option>
+            </select>
+            <label for="difficulty">Choose Difficulty:</label>
+            <select id="difficulty" name="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button type="submit">Get Question</button>
+        </form>
+    {% endif %}
+</body>
+</html>
+

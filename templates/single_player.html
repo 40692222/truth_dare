@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Single Player Mode</h2>
+<p>Select your choice:</p>
+<form id="game-form">
+    <label>
+        Type:
+        <select name="type">
+            <option value="truth">Truth</option>
+            <option value="dare">Dare</option>
+        </select>
+    </label>
+    <label>
+        Difficulty:
+        <select name="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+    </label>
+    <button type="submit">Get Prompt</button>
+</form>
+<div id="result"></div>
+<script>
+    document.getElementById('game-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const type = event.target.type.value;
+        const difficulty = event.target.difficulty.value;
+        const response = await fetch(`/get-truth-or-dare?type=${type}&difficulty=${difficulty}`);
+        const data = await response.json();
+        document.getElementById('result').innerText = data.content;
+    });
+</script>
+{% endblock %}
